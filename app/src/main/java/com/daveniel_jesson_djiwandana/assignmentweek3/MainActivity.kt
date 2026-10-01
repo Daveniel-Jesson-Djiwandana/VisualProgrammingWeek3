@@ -1,5 +1,6 @@
 package com.daveniel_jesson_djiwandana.assignmentweek3
 
+import com.daveniel_jesson_djiwandana.assignmentweek3.soal3.Soal3View
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,12 +20,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AssignmentWeek3Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                Soal3View()
             }
         }
     }
