@@ -3,6 +3,7 @@ package com.daveniel_jesson_djiwandana.assignmentweek3
 import com.daveniel_jesson_djiwandana.assignmentweek3.soal1.Soal1View
 import com.daveniel_jesson_djiwandana.assignmentweek3.soal2.Soal2View
 import com.daveniel_jesson_djiwandana.assignmentweek3.soal3.Soal3View
+import com.daveniel_jesson_djiwandana.assignmentweek3.soal4.Soal4View
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent

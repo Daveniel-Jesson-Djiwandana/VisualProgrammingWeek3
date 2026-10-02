@@ -29,6 +29,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -61,10 +62,10 @@ fun Soal2View(){
     } else {
         sound = "Purr~"
     }
-    var coins by remember { mutableStateOf(0) }
-    var value by remember { mutableStateOf(1) }
+    var coins by rememberSaveable { mutableStateOf(0) }
+    var value by rememberSaveable { mutableStateOf(1) }
     var valueSelanjutnya = (value * 1.5).roundToInt()
-    var cost by remember { mutableStateOf(10) }
+    var cost by rememberSaveable { mutableStateOf(10) }
     val coinsToUpgrade = maxOf(0, cost - coins)
     val canUpgrade = coins >= cost
     var coinAmount = ""

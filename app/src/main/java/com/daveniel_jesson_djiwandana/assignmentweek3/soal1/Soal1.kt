@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -50,9 +51,9 @@ enum class Category(val message: String, val background: Color, val photo: Int) 
 }
 @Composable
 fun Soal1View() {
-    var pageState by remember {mutableStateOf(halamanApa.FIRST)}
-    var start by remember {mutableStateOf(0L)}
-    val results = remember { mutableStateListOf<Int?>() }
+    var pageState by rememberSaveable {mutableStateOf(halamanApa.FIRST)}
+    var start by rememberSaveable {mutableStateOf(0L)}
+    val results = rememberSaveable { mutableStateListOf<Int?>() }
     LaunchedEffect(pageState) {
         if (pageState == halamanApa.WAIT) {
             delay(Random.nextLong(500, 4501))

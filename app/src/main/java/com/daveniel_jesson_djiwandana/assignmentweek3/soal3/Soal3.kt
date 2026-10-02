@@ -28,6 +28,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,6 +48,7 @@ import kotlin.math.roundToInt
 
 enum class halamanApa {WELCOME, HITUNG, GAME, DONE}
 enum class Mode {TEXT, COLOR}
+enum class Choice {TEXT, COLOR}
 enum class Options(val actualWord: String, val wordColor: Color) {
     RED("RED", Color(0xFFF44336)),
     BLUE("BLUE", Color(0xFF2196F3)),
@@ -58,19 +60,20 @@ enum class Options(val actualWord: String, val wordColor: Color) {
 @Composable
 
 fun Soal3View(){
-    var pageState by remember {mutableStateOf(halamanApa.WELCOME)}
-    var mode by remember {mutableStateOf(Mode.COLOR)}
-    var text by remember {mutableStateOf(Options.RED)}
-    var color by remember {mutableStateOf(Options.BLUE)}
-    var countDown by remember {mutableStateOf("")}
-    var counterCorrect by remember {mutableStateOf(0)}
-    var counterWrong by remember {mutableStateOf(0)}
-    var timer by remember {mutableStateOf(5000)}
-    var bestScore by remember {mutableStateOf(0)}
-    var leftButtonIsWordColor by remember {mutableStateOf(true)}
-    var questionNumber by remember {mutableStateOf(0)}
+    var pageState by rememberSaveable {mutableStateOf(halamanApa.WELCOME)}
+    var mode by rememberSaveable {mutableStateOf(Mode.COLOR)}
+    var text by rememberSaveable {mutableStateOf(Options.RED)}
+    var color by rememberSaveable {mutableStateOf(Options.BLUE)}
+    var countDown by rememberSaveable {mutableStateOf("")}
+    var counterCorrect by rememberSaveable {mutableStateOf(0)}
+    var counterWrong by rememberSaveable {mutableStateOf(0)}
+    var timer by rememberSaveable {mutableStateOf(5000)}
+    var bestScore by rememberSaveable {mutableStateOf(0)}
+    var leftButtonIsWordColor by rememberSaveable {mutableStateOf(true)}
+    var questionNumber by rememberSaveable {mutableStateOf(0)}
 
     fun question() {
+        timer = 5000
         if (Random.nextBoolean()) {
             mode = Mode.COLOR
         } else {
@@ -149,38 +152,52 @@ fun Soal3View(){
                     Text(text.actualWord, color = color.wordColor, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth(), fontSize = 60.sp)
                 }
                 Spacer(modifier = Modifier.height(80.dp))
-                var correct = text
+                var correct = Choice.TEXT
                 if (mode == Mode.COLOR) {
-                    correct = color
+                    correct = Choice.COLOR
                 }
-                var choices = listOf(text, color)
+                var left = Choice.TEXT
                 if (leftButtonIsWordColor) {
-                    choices = listOf(color, text)
+                    left = Choice.COLOR
                 }
+                var right = Choice.COLOR
+                if (leftButtonIsWordColor) {
+                    right = Choice.TEXT
+                }
+                var leftLabel = text.actualWord
+                if (left == Choice.COLOR) {
+                    leftLabel = color.actualWord
+                }
+
+                var rightLabel = text.actualWord
+                if (right == Choice.COLOR) {
+                    rightLabel = color.actualWord
+                }
+
                 Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
                     Button(
                         modifier = Modifier.clip(RoundedCornerShape(10.dp)),
                         onClick = {
-                            answer(choices[0] == correct)
+                            answer(left == correct)
                         },
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color(0xFFBCC8CF),
                             contentColor = Color.Black
                         )
                     ) {
-                        Text(choices[0].actualWord, textAlign = TextAlign.Center, fontSize = 20.sp)
+                        Text(leftLabel, textAlign = TextAlign.Center, fontSize = 20.sp)
                     }
                     Button(
                         modifier = Modifier.clip(RoundedCornerShape(10.dp)),
                         onClick = {
-                            answer(choices[1] == correct)
+                            answer(right == correct)
                         },
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color(0xFFBCC8CF),
                             contentColor = Color.Black
                         )
                     ) {
-                        Text(choices[1].actualWord, textAlign = TextAlign.Center, fontSize = 20.sp)
+                        Text(rightLabel, textAlign = TextAlign.Center, fontSize = 20.sp)
                     }
                 }
             }
