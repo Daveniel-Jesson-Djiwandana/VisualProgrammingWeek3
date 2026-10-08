@@ -5,6 +5,7 @@ import com.daveniel_jesson_djiwandana.assignmentweek3.soal2.Soal2View
 import com.daveniel_jesson_djiwandana.assignmentweek3.soal3.Soal3View
 import com.daveniel_jesson_djiwandana.assignmentweek3.soal4.Soal4View
 import com.daveniel_jesson_djiwandana.assignmentweek3.bonusSoal1.SoalBonus1View
+import com.daveniel_jesson_djiwandana.assignmentweek3.bonusSoal2.SoalBonus2View
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
