@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -227,36 +228,38 @@ fun SoalBonus1View() {
             ) {
                 Text("Jumlah Pesanan:", color = boldTextColor, fontWeight = FontWeight.Bold, fontSize = 14.sp)
                 Row(horizontalArrangement = Arrangement.spacedBy(14.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Box(
-                        modifier = Modifier
-                            .size(36.dp)
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(Color.White)
-                            .border(1.dp, Color(0xFFD0D0D0), RoundedCornerShape(8.dp))
-                            .clickable {
-                                if (jumlah > 1) {
-                                    jumlah--
-                                }
-                            },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text("-", color = boldTextColor, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                    Button(
+                        onClick = {
+                            if (jumlah > 1) {
+                                jumlah--
+                            }
+                        },
+                        modifier = Modifier.size(36.dp),
+                        shape = RoundedCornerShape(8.dp),
+                        contentPadding = PaddingValues(0.dp),
+                        border = BorderStroke(1.dp, Color.Gray),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFFFCF8F6),
+                            contentColor = boldTextColor
+                        )) {
+                        Text("-", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold, fontSize = 20.sp)
                     }
 
                     Text("$jumlah", color = boldTextColor, fontWeight = FontWeight.Bold, fontSize = 18.sp)
 
-                    Box(
-                        modifier = Modifier
-                            .size(36.dp)
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(Color(0xFFFCEBDD))
-                            .border(1.dp, Color(0xFFD0D0D0), RoundedCornerShape(8.dp))
-                            .clickable {
-                                jumlah++
-                            },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text("+", color = boldTextColor, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                    Button(
+                        onClick = {
+                            jumlah++
+                        },
+                        modifier = Modifier.size(36.dp),
+                        shape = RoundedCornerShape(8.dp),
+                        contentPadding = PaddingValues(0.dp),
+                        border = BorderStroke(1.dp, Color.Gray),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFFF0E5DF),
+                            contentColor = boldTextColor
+                        )) {
+                        Text("+", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold, fontSize = 20.sp)
                     }
                 }
             }
