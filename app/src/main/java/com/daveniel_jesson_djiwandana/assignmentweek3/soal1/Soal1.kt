@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -139,7 +140,7 @@ fun Soal1View() {
                 }
             }
         }) {
-        Text(top, color = Color.White, fontSize = 30.sp, fontWeight = FontWeight.Bold)
+        Text(top, color = Color.White, fontSize = 30.sp, fontWeight = FontWeight.Bold, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(30.dp))
         if (pageState == halamanApa.FINAL) {
             Image(

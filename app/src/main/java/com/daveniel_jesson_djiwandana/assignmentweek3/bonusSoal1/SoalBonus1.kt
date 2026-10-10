@@ -30,6 +30,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -58,10 +59,10 @@ fun SoalBonus1View() {
     val normalTextColor = Color(0xFF7B482B)
     val warnaOutline = Color(0xFFF8DAB2)
     val orange = Color(0xFFD9622B)
-    val snackbarHostState = remember{SnackbarHostState()}
+    val snackbarHostState = remember {SnackbarHostState()}
     val scope = rememberCoroutineScope()
-    var jumlah by remember { mutableIntStateOf(3) }
-    var extraLarge by remember { mutableStateOf(false) }
+    var jumlah by rememberSaveable {mutableIntStateOf(3)}
+    var extraLarge by rememberSaveable {mutableStateOf(false)}
     var perItem = 0
     if (extraLarge) {
         perItem = 31000
@@ -328,7 +329,7 @@ fun SoalBonus1View() {
                 .padding(bottom = 30.dp)
                 .height(50.dp),
             shape = RoundedCornerShape(12.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = orange)
+            colors = ButtonDefaults.buttonColors(containerColor = orange, contentColor = Color.White)
         ) {
             Text("TAMBAH KE KERANJANG", fontWeight = FontWeight.Bold, fontSize = 15.sp)
         }

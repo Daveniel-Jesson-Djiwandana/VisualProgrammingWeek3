@@ -40,6 +40,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -56,11 +57,11 @@ fun SoalBonus2View() {
     val scope = rememberCoroutineScope()
     val interactionSource = remember {MutableInteractionSource()}
 
-    var wisata by remember {mutableStateOf("Fjellheisen Cable Car")}
-    var nikmati by remember {mutableStateOf("Pemandangan langit malam hijau aurora spektakuler dari puncak gunung...")}
-    var notes by remember {mutableStateOf("")}
-    var rating by remember {mutableStateOf("Luar Biasa ★")}
-    var textStatus by remember {mutableStateOf("Draft tidak Tersimpan")}
+    var wisata by rememberSaveable {mutableStateOf("Fjellheisen Cable Car")}
+    var nikmati by rememberSaveable {mutableStateOf("Pemandangan langit malam hijau aurora spektakuler dari puncak gunung...")}
+    var notes by rememberSaveable {mutableStateOf("")}
+    var rating by rememberSaveable {mutableStateOf("Luar Biasa ★")}
+    var textStatus by rememberSaveable {mutableStateOf("Draft tidak Tersimpan")}
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier
